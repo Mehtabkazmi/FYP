@@ -121,7 +121,7 @@ const Payment = ({ history }) => {
       <div className="paymentContainer">
         <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
           <Typography>Card Info</Typography>
-          <div>
+          <div> 
             <CreditCardIcon />
             <CardNumberElement className="paymentInput" />
           </div>

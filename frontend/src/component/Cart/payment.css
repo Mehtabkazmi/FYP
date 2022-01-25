@@ -16,6 +16,7 @@
   color: rgba(0, 0, 0, 0.753);
   border-bottom: 1px solid rgba(0, 0, 0, 0.13);
   padding: 1vmax 0;
+  color: #243f14;
   text-align: center;
   width: 50%;
   margin: auto;
@@ -46,7 +47,9 @@
 
 .paymentFormBtn {
   border: none;
-  background-color: tomato;
+  background-image: linear-gradient(to bottom right,
+    #243f14,
+    #e6e8e6);
   color: white;
   font: 300 0.9vmax "Roboto";
   width: 100%;
@@ -57,7 +60,9 @@
 }
 
 .paymentFormBtn:hover {
-  background-color: rgb(179, 66, 46);
+  background-image: linear-gradient(to bottom right,
+      #e6e8e6,
+      #ffad08);
 }
 
 @media screen and (max-width: 600px) {

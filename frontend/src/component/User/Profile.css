@@ -20,14 +20,14 @@
 }
 
 .profileContainer > div:first-child > h1 {
-  color: rgba(0, 0, 0, 0.555);
+  color: #243f14;
   font: 500 2.2vmax "Roboto";
   transform: translateX(-10vmax) translateY(-2vmax);
 }
 
 .profileContainer > div:first-child > img {
   width: 20vmax;
-  border-radius: 100%;
+  border-radius: 50%;
   transition: all 0.5s;
 }
 
@@ -37,7 +37,9 @@
 
 .profileContainer > div:first-child > a {
   border: none;
-  background-color: tomato;
+  background-image: linear-gradient(to bottom right,
+    #243f14,
+    #e6e8e6);
   font: 400 1vmax "Roboto";
   color: white;
   text-decoration: none;
@@ -48,8 +50,10 @@
   transition: all 0.5s;
 }
 
-.profileContainer > div:first-child > a:hover {
-  background-color: rgb(204, 78, 56);
+.profileContainer>div:first-child>a:hover {
+  background-image: linear-gradient(to bottom right,
+      #e6e8e6,
+      #ffad08);
 }
 
 .profileContainer > div:last-child {
@@ -78,7 +82,9 @@
 
 .profileContainer > div:last-child > div:last-child > a {
   border: none;
-  background-color: rgb(68, 68, 68);
+  background-image: linear-gradient(to bottom right,
+    #e6e8e6,
+    #ffad08);
   font: 400 1vmax "Roboto";
   color: white;
   text-decoration: none;

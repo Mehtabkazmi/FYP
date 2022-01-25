@@ -23,7 +23,8 @@
   height: 3vmax;
 }
 .login_signUp_toggle > p {
-  color: rgba(0, 0, 0, 0.678);
+  color: #243f14;
+  font-weight: bold;
   font: 300 1vmax "Roboto";
   transition: all 0.5s;
   cursor: pointer;
@@ -127,7 +128,9 @@
 .loginBtn,
 .signUpBtn {
   border: none;
-  background-color: tomato;
+  background-image: linear-gradient(to bottom right,
+    #243f14,
+    #e6e8e6);
   color: white;
   font: 300 0.9vmax "Roboto";
   width: 100%;
@@ -141,7 +144,9 @@
 
 .loginBtn:hover,
 .signUpBtn:hover {
-  background-color: rgb(179, 66, 46);
+  background-image: linear-gradient(to bottom right,
+      #e6e8e6,
+      #ffad08);
 }
 
 .shiftToLeft {
@@ -172,6 +177,7 @@
   }
   .login_signUp_toggle > p {
     font: 300 1.5vmax "Roboto";
+    color: #243f14;
   }
 
   .loginForm,

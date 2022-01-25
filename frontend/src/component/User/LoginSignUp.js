@@ -108,7 +108,7 @@ const LoginSignUp = ({ history, location }) => {
           <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox">
               <div>
-                <div className="login_signUp_toggle">
+                <div className="login_signUp_toggle"> 
                   <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
                   <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p>
                 </div>

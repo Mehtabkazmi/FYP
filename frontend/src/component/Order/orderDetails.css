@@ -5,7 +5,7 @@
 .orderDetailsContainer > h1 {
   font: 300 3vmax "Roboto";
   margin: 4vmax 0;
-  color: tomato;
+  color: #243f14;
 }
 
 .orderDetailsContainer {
@@ -15,11 +15,13 @@
 
 .orderDetailsContainer > p {
   font: 400 1.8vmax "Roboto";
+  color: #243f14;
 }
 
 .orderDetailsContainerBox,
 .orderDetailsCartItemsContainer {
   margin: 2vmax;
+  color: #243f14;
 }
 
 .orderDetailsContainerBox > div {
@@ -39,6 +41,7 @@
 
 .orderDetailsCartItems > p {
   font: 400 1.8vmax "Roboto";
+  color: #243f14;
 }
 
 .orderDetailsCartItems {

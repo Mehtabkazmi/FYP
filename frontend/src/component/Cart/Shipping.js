@@ -47,7 +47,6 @@ const Shipping = ({ history }) => {
       <div className="shippingContainer">
         <div className="shippingBox">
           <h2 className="shippingHeading">Shipping Details</h2>
-
           <form
             className="shippingForm"
             encType="multipart/form-data"
