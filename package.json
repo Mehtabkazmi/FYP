@@ -24,6 +24,7 @@
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15",
     "react-reveal": "^1.2.2",
+    "react-speech-recognition": "^3.9.0",
     "stripe": "^8.197.0",
     "validator": "^13.7.0"
   }

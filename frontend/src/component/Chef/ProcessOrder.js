@@ -165,10 +165,10 @@ const ProcessOrder = ({ history, match }) => {
                     <select onChange={(e) => setStatus(e.target.value)}>
                       <option value="">Choose Category</option>
                       {order.orderStatus === "Processing" && (
-                        <option value="Shipped">Shipped</option>
+                        <option value="Confirmed">Confirmed</option>
                       )}
 
-                      {order.orderStatus === "Shipped" && (
+                      {order.orderStatus === "Confirmed" && (
                         <option value="Delivered">Delivered</option>
                       )}
                     </select>
