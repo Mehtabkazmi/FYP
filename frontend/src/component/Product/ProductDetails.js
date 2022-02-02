@@ -22,8 +22,17 @@ import {
 import { Rating } from "@material-ui/lab";
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
 import Flip from 'react-reveal/Wobble';
-
+import { Canvas } from "@react-three/fiber";
+import Yakiudon from "../../components/Yakiudon";
+import {Earth} from "../../components/earth";
+import Masalarice from "../../components/Masalarice";
+import { OrbitControls } from "@react-three/drei";
+import EarthDayMap from "../../assets/textures/soup.png";
+import { useFrame, useLoader } from "@react-three/fiber";
+import { TextureLoader } from "three";
 const ProductDetails = ({ match }) => {
+
+  // code 
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -99,6 +108,11 @@ const ProductDetails = ({ match }) => {
     }
     dispatch(getProductDetails(match.params.id));
   }, [dispatch, match.params.id, error, alert, reviewError, success]);
+  
+  const [colorMap] = useLoader(
+    TextureLoader,
+    [EarthDayMap]
+  );
 
   return (
     <Fragment>
@@ -109,7 +123,7 @@ const ProductDetails = ({ match }) => {
           <MetaData title={`${product.name} -- hotel`} />
           <div className="ProductDetails">
             <div>
-              <Carousel>
+              {/* <Carousel>
                 {product.images &&
                   product.images.map((item, i) => (
                     <img
@@ -119,9 +133,17 @@ const ProductDetails = ({ match }) => {
                       alt={`${i} Slide`}
                     />
                   ))}
-              </Carousel>
+              </Carousel> */}
+      <Canvas clasName="canvas">
+        <OrbitControls enableZoom={false} />
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[-2, 5, 2]} />
+          <Masalarice />
+        </Canvas>
+                {/* <Canvas clasName="canvas">
+                  <Earth images={colorMap} />
+                </Canvas> */}
             </div>
-
             <div>
               <div className="detailsBlock-1">
                 <Flip left><h2>{product.name}</h2></Flip>

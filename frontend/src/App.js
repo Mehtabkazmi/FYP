@@ -1,7 +1,8 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import Header from "./component/layout/Header/Header.js";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Redirect ,Link} from "react-router-dom";
 import WebFont from "webfontloader";
 import React from "react";
 import Footer from "./component/layout/Footer/Footer";
@@ -49,7 +50,9 @@ import managerProductReviews from "./component/Manager/ProductReviews";
 import Contact from "./component/layout/Contact/Contact";
 import About from "./component/layout/About/About";
 import NotFound from "./component/layout/Not Found/NotFound";
-
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
@@ -74,9 +77,71 @@ function App() {
   }, []);
 
   // window.addEventListener("contextmenu", (e) => e.preventDefault());
+// const commands = [
+//     {
+//       command: ["Go to * page", "Go to *", "Open * page", "Open *"],
+//       callback: (redirectPage) => setRedirectUrl(redirectPage),
+//     },
+//   ];
 
+//   const { transcript } = useSpeechRecognition({ commands });
+//   const [redirectUrl, setRedirectUrl] = useState("");
+//   const pages = ["home", "contact"];
+//   const urls = {
+//     home: "/",
+//     contact: "/contact",
+//   };
+
+//   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+//     return null;
+//   }
+const commands= [
+    // {
+    //   command: 'reset',
+    //   callback:({resetTranscript})=>resetTranscript()
+    // },
+  //   {
+  //     command: 'open *',
+  //     callback: (site)=>{
+  //       window.open('http://' + site);
+  //     }
+  // },
+    {
+      command: ['Go to *','Go to * page'],
+      callback: (redirectPage) => setRedirectUrl(redirectPage),
+    },
+  ]
+  const {
+    transcript
+    // listening,
+    // resetTranscript,
+    // browserSupportsSpeechRecognition
+  } = useSpeechRecognition({commands});
+  const [redirectUrl, setRedirectUrl] = useState("");
+  const pages = ["home", "products", "contact"];
+  const urls = {
+    home: "/",
+    products:"/products",
+    contact: "/contact",
+  };
+  // if (!browserSupportsSpeechRecognition) {
+  //   return <span>Browser doesn't support speech recognition.</span>;
+  // }
+  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+    return null;
+  }
+  let redirect = "";
+
+  if (redirectUrl) {
+    if (pages.includes(redirectUrl)) {
+      redirect = <Redirect to={urls[redirectUrl]} />;
+    } else {
+      redirect = <p>Could not find page: {redirectUrl}</p>;
+    }
+  }
   return (
-    <Router>
+    <>
+    <BrowserRouter>
       <Header />
 
       {isAuthenticated && <UserOptions user={user} />}
@@ -98,6 +163,7 @@ function App() {
         <Route exact path="/contact" component={Contact} />
 
         <Route exact path="/about" component={About} />
+        {redirect}
 
         <ProtectedRoute exact path="/account" component={Profile} />
 
@@ -236,7 +302,16 @@ function App() {
       </Switch>
 
       <Footer />
-    </Router>
+    </BrowserRouter>
+    <p id="transcript">Transcript: {transcript}</p>
+
+      <button onClick={SpeechRecognition.startListening}>Start</button>
+      {/* <p>Microphone: {listening ? 'on' : 'off'}</p>
+      <button onClick={SpeechRecognition.startListening({continuous:true})}>Start</button>
+      <button onClick={SpeechRecognition.stopListening}>Stop</button>
+      <button onClick={resetTranscript}>Reset</button>
+      <p>{transcript}</p> */}
+    </>
   );
 }
 
