@@ -20,7 +20,7 @@ export function Earth(props) {
     <>
       <ambientLight intensity={1} />
       <mesh ref={earthRef} position={[0, 0, 2]}>
-        <coneGeometry args={[3, 5 , 200 ]} />
+        <boxGeometry args={[3, 3, 3  ]} />
         <meshStandardMaterial
           map={props.images}
           metalness={0.4}

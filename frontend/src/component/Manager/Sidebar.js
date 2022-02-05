@@ -1,6 +1,6 @@
 import React from "react";
 import "../Admin/sidebar.css";
-import logo from "../../images/cover.jpg";
+import logo from "../../images/logo.png";
 import { Link } from "react-router-dom";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import ListAltIcon from "@material-ui/icons/ListAlt";

@@ -135,8 +135,8 @@ const ProductDetails = ({ match }) => {
                   ))}
               </Carousel> */}
       <Canvas clasName="canvas">
-        <OrbitControls enableZoom={false} />
-        <ambientLight intensity={0.5} />
+        <OrbitControls enableZoom={true} />
+        <ambientLight intensity={1} />
         <directionalLight position={[-2, 5, 2]} />
           <Masalarice />
         </Canvas>
