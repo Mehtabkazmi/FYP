@@ -10,6 +10,8 @@ import {
 import ReviewCard from "./ReviewCard.js";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
+import VoicesTTS from 'speechsynthesisutterance';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import MetaData from "../layout/MetaData";
 import { addItemsToCart } from "../../actions/cartAction";
 import {
@@ -31,6 +33,12 @@ import Header1 from "../layout/Header/Header1";
 import { TextureLoader } from "three";
 const ProductDetails = ({ match,history }) => {
  
+  // text to voice initial
+  VoicesTTS.init({
+    'lang': 'en-US',
+    'volume': 0.5,
+    'rate': 0.8
+})
   // code 
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -181,7 +189,8 @@ const ProductDetails = ({ match,history }) => {
               </div>
 
               <div className="detailsBlock-4">
-                Description : <p>{product.description}</p>
+                  Description : <p>{VoicesTTS.speak(`${product.description}`, 'en-IN'), product.description}</p>
+                  <VolumeUpIcon />
               </div>
 
               <button onClick={submitReviewToggle} className="submitReview">

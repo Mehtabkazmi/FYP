@@ -50,29 +50,20 @@ const UseAlan = ({history}) => {
   
   // close menu
   const closeCart = useCallback(() => {
-    if (isCartEmpty) {
-      alanInstance.playText("You have no items in your cart")
-    } else {
       alanInstance.playText("Closing cart");
       history.push("/");
       alanInstance.remove();
-    }
   }, [alanInstance, isCartEmpty,history])
 
   // add item in menu list
   const addItem = useCallback(
     ({ detail: { product, quantity } }) => {
-        if (cartItems == null) {
-          alanInstance.playText(`I cannot find the ${product} item`)
-        }
-        else {
         products.filter((x, index, arr) => arr[index].name.toLowerCase() === product.toLowerCase()).map(({ _id, name }) => {
             dispatch(addItemsToCart(_id, quantity));
           alanInstance.playText(
             `Add ${quantity} of the ${product} item to your cart`
           );
     }); 
-      }
     }, [alanInstance, dispatch])
   
     
@@ -91,30 +82,18 @@ const UseAlan = ({history}) => {
       
       // order sending method.. 
       const purchaseItems = useCallback(() => {
-        if (isCartEmpty) {
-          alanInstance.playText("Your cart is empty")
-        } else {
           alanInstance.playText("Checking out")
           history.push("/login?redirect=shipping");
           alanInstance.remove();
-        }
       }, [alanInstance, isCartEmpty])
   
       // open single dish ...
   const openDish = useCallback(
-    ({ detail: { product,quantity } }) => {
-            if (cartItems == null) {
-              alanInstance.playText(`I cannot find the ${product} item`)
-            }
-            else {
+    ({ detail: { product } }) => {
               products.filter((x, index, arr) => arr[index].name.toLowerCase() === product.toLowerCase()).map(({ _id, name }) => {
                 history.push(`/product/${_id}`);
-                alanInstance.playText(
-                  `Add of the ${product} item to your cart`
-                );
-                alanInstance.remove();
-                }); 
-          }
+              }); 
+              alanInstance.remove();
         },[alanInstance,history])
 
   useEffect(() => {

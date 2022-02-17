@@ -25,12 +25,16 @@ const user = require("./routes/userRoute");
 const order = require("./routes/orderRoute");
 const payment = require("./routes/paymentRoute");
 const chat = require("./routes/chatRoute");
+const conv = require("./routes/convRoute");
+const msg = require("./routes/msgRoute");
 
 app.use("/api/v1", product);
 app.use("/api/v1", user);
 app.use("/api/v1", order);
 app.use("/api/v1", payment);
 app.use("/api/v1", chat);
+app.use("/api/v1", conv);
+app.use("/api/v1", msg);
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
