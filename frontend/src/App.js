@@ -1,8 +1,8 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import Header from "./component/layout/Header/Header.js";
+import Header1 from "./component/layout/Header/Header1.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Redirect ,Link} from "react-router-dom";
 import WebFont from "webfontloader";
 import React from "react";
 import Footer from "./component/layout/Footer/Footer";
@@ -50,10 +50,9 @@ import managerProductReviews from "./component/Manager/ProductReviews";
 import Contact from "./component/layout/Contact/Contact";
 import About from "./component/layout/About/About";
 import NotFound from "./component/layout/Not Found/NotFound";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
-function App() {
+
+const App = ({history}) => {
+  
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
   const [stripeApiKey, setStripeApiKey] = useState("");
@@ -77,242 +76,170 @@ function App() {
   }, []);
 
   // window.addEventListener("contextmenu", (e) => e.preventDefault());
-// const commands = [
-//     {
-//       command: ["Go to * page", "Go to *", "Open * page", "Open *"],
-//       callback: (redirectPage) => setRedirectUrl(redirectPage),
-//     },
-//   ];
-
-//   const { transcript } = useSpeechRecognition({ commands });
-//   const [redirectUrl, setRedirectUrl] = useState("");
-//   const pages = ["home", "contact"];
-//   const urls = {
-//     home: "/",
-//     contact: "/contact",
-//   };
-
-//   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-//     return null;
-//   }
-const commands= [
-    // {
-    //   command: 'reset',
-    //   callback:({resetTranscript})=>resetTranscript()
-    // },
-  //   {
-  //     command: 'open *',
-  //     callback: (site)=>{
-  //       window.open('http://' + site);
-  //     }
-  // },
-    {
-      command: ['Go to *','Go to * page'],
-      callback: (redirectPage) => setRedirectUrl(redirectPage),
-    },
-  ]
-  const {
-    transcript
-    // listening,
-    // resetTranscript,
-    // browserSupportsSpeechRecognition
-  } = useSpeechRecognition({commands});
-  const [redirectUrl, setRedirectUrl] = useState("");
-  const pages = ["home", "products", "contact"];
-  const urls = {
-    home: "/",
-    products:"/products",
-    contact: "/contact",
-  };
-  // if (!browserSupportsSpeechRecognition) {
-  //   return <span>Browser doesn't support speech recognition.</span>;
-  // }
-  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-    return null;
-  }
-  let redirect = "";
-
-  if (redirectUrl) {
-    if (pages.includes(redirectUrl)) {
-      redirect = <Redirect to={urls[redirectUrl]} />;
-    } else {
-      redirect = <p>Could not find page: {redirectUrl}</p>;
-    }
-  }
   return (
     <>
-    <BrowserRouter>
-      <Header />
+      <BrowserRouter>
+        <Header /> 
+        {isAuthenticated && <UserOptions user={user} />}
 
-      {isAuthenticated && <UserOptions user={user} />}
+        {stripeApiKey && (
+          <Elements stripe={loadStripe(stripeApiKey)}>
+            <ProtectedRoute exact path="/process/payment" component={Payment} />
+          </Elements>
+        )}
 
-      {stripeApiKey && (
-        <Elements stripe={loadStripe(stripeApiKey)}>
-          <ProtectedRoute exact path="/process/payment" component={Payment} />
-        </Elements>
-      )}
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/product/:id" component={ProductDetails} />
+          <Route exact path="/products" component={Products} />
+          <Route path="/products/:keyword" component={Products} />
 
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/product/:id" component={ProductDetails} />
-        <Route exact path="/products" component={Products} />
-        <Route path="/products/:keyword" component={Products} />
+          <Route exact path="/search" component={Search} />
 
-        <Route exact path="/search" component={Search} />
+          <Route exact path="/contact" component={Contact} />
 
-        <Route exact path="/contact" component={Contact} />
+          <Route exact path="/about" component={About} />
 
-        <Route exact path="/about" component={About} />
-        {redirect}
+          <ProtectedRoute exact path="/account" component={Profile} />
 
-        <ProtectedRoute exact path="/account" component={Profile} />
+          <ProtectedRoute exact path="/me/update" component={UpdateProfile} />
 
-        <ProtectedRoute exact path="/me/update" component={UpdateProfile} />
+          <ProtectedRoute
+            exact
+            path="/password/update"
+            component={UpdatePassword}
+          />
 
-        <ProtectedRoute
-          exact
-          path="/password/update"
-          component={UpdatePassword}
-        />
+          <Route exact path="/password/forgot" component={ForgotPassword} />
 
-        <Route exact path="/password/forgot" component={ForgotPassword} />
+          <Route exact path="/password/reset/:token" component={ResetPassword} />
 
-        <Route exact path="/password/reset/:token" component={ResetPassword} />
+          <Route exact path="/login" component={LoginSignUp} />
 
-        <Route exact path="/login" component={LoginSignUp} />
+          <Route exact path="/cart" component={Cart} />
 
-        <Route exact path="/cart" component={Cart} />
+          <ProtectedRoute exact path="/shipping" component={Shipping} />
 
-        <ProtectedRoute exact path="/shipping" component={Shipping} />
+          <ProtectedRoute exact path="/success" component={OrderSuccess} />
 
-        <ProtectedRoute exact path="/success" component={OrderSuccess} />
+          <ProtectedRoute exact path="/orders" component={MyOrders} />
 
-        <ProtectedRoute exact path="/orders" component={MyOrders} />
+          <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
 
-        <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
+          <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
 
-        <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
+          <ProtectedRoute
+            isAdmin={true}
+            exact
+            path="/admin/dashboard"
+            component={Dashboard}
+          />
+          <ProtectedRoute
+            exact
+            path="/admin/products"
+            isAdmin={true}
+            component={ProductList}
+          />
+          <ProtectedRoute
+            exact
+            path="/admin/product/new"
+            isAdmin={true}
+            component={NewProduct}
+          />
 
-        <ProtectedRoute
-          isAdmin={true}
-          exact
-          path="/admin/dashboard"
-          component={Dashboard}
-        />
-        <ProtectedRoute
-          exact
-          path="/admin/products"
-          isAdmin={true} 
-          component={ProductList}
-        />
-        <ProtectedRoute
-          exact
-          path="/admin/product/new"
-          isAdmin={true}
-          component={NewProduct}
-        />
+          <ProtectedRoute
+            exact
+            path="/admin/product/:id"
+            isAdmin={true}
+            component={UpdateProduct}
+          />
+          <ProtectedRoute
+            exact
+            path="/admin/orders"
+            isAdmin={true}
+            component={OrderList}
+          />
 
-        <ProtectedRoute
-          exact
-          path="/admin/product/:id"
-          isAdmin={true}
-          component={UpdateProduct}
-        />
-        <ProtectedRoute
-          exact
-          path="/admin/orders"
-          isAdmin={true}
-          component={OrderList}
-        />
+          <ProtectedRoute
+            exact
+            path="/admin/order/:id"
+            isAdmin={true}
+            component={ProcessOrder}
+          />
+          <ProtectedRoute
+            exact
+            path="/admin/users"
+            isAdmin={true}
+            component={UsersList}
+          />
 
-        <ProtectedRoute
-          exact
-          path="/admin/order/:id"
-          isAdmin={true}
-          component={ProcessOrder}
-        />
-        <ProtectedRoute
-          exact
-          path="/admin/users"
-          isAdmin={true}
-          component={UsersList}
-        />
+          <ProtectedRoute
+            exact
+            path="/admin/user/:id"
+            isAdmin={true}
+            component={UpdateUser}
+          />
 
-        <ProtectedRoute
-          exact
-          path="/admin/user/:id"
-          isAdmin={true}
-          component={UpdateUser}
-        />
+          <ProtectedRoute
+            exact
+            path="/admin/reviews"
+            isAdmin={true}
+            component={ProductReviews}
+          />
+          <ProtectedRoute
+            isManager={true}
+            exact
+            path="/manager/dashboard"
+            component={ManagerDashboard}
+          />
+          <ProtectedRoute
+            exact
+            path="/manager/products"
+            isManager={true}
+            component={managerProductList}
+          />
+          <ProtectedRoute
+            exact
+            path="/manager/orders"
+            isManager={true}
+            component={managerOrderList}
+          />
 
-        <ProtectedRoute
-          exact
-          path="/admin/reviews"
-          isAdmin={true}
-          component={ProductReviews}
-        />
-      <ProtectedRoute
-          isManager={true}
-          exact
-          path="/manager/dashboard"
-          component={ManagerDashboard}
-        />
-        <ProtectedRoute
-          exact
-          path="/manager/products"
-          isManager={true}
-          component={managerProductList}
-        />
-      <ProtectedRoute
-          exact
-          path="/manager/orders"
-          isManager={true}
-          component={managerOrderList}
-        />
-
-        <ProtectedRoute
-          exact
-          path="/manager/reviews"
-          isManager={true}
-          component={managerProductReviews}
-        />
-        <ProtectedRoute
-          isChef={true}
-          exact
-          path="/chef/dashboard"
-          component={ChefDashboard}
-        />
-        <ProtectedRoute
-          exact
-          path="/chef/orders"
-          isChef={true}
-          component={chefOrderList}
-        />
-        <ProtectedRoute
-          exact
-          path="/chef/order/:id"
-          isChef={true}
-          component={ProcessChefOrder}
-        />
-        <Route
-          component={
-            window.location.pathname === "/process/payment" ? null : NotFound
-          }
-        />
-      </Switch>
-
-      <Footer />
-    </BrowserRouter>
-    <p id="transcript">Transcript: {transcript}</p>
-
-      <button onClick={SpeechRecognition.startListening}>Start</button>
-      {/* <p>Microphone: {listening ? 'on' : 'off'}</p>
-      <button onClick={SpeechRecognition.startListening({continuous:true})}>Start</button>
-      <button onClick={SpeechRecognition.stopListening}>Stop</button>
-      <button onClick={resetTranscript}>Reset</button>
-      <p>{transcript}</p> */}
+          <ProtectedRoute
+            exact
+            path="/manager/reviews"
+            isManager={true}
+            component={managerProductReviews}
+          />
+          <ProtectedRoute
+            isChef={true}
+            exact
+            path="/chef/dashboard"
+            component={ChefDashboard}
+          />
+          <ProtectedRoute
+            exact
+            path="/chef/orders"
+            isChef={true}
+            component={chefOrderList}
+          />
+          <ProtectedRoute
+            exact
+            path="/chef/order/:id"
+            isChef={true}
+            component={ProcessChefOrder}
+          />
+          <Route
+            component={
+              window.location.pathname === "/process/payment" ? null : NotFound
+            }
+          />
+        </Switch>
+          
+        <Footer />
+      </BrowserRouter>
     </>
   );
-}
+};
 
 export default App;

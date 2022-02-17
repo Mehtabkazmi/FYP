@@ -23,15 +23,14 @@ import { Rating } from "@material-ui/lab";
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
 import Flip from 'react-reveal/Wobble';
 import { Canvas } from "@react-three/fiber";
-import Yakiudon from "../../components/Yakiudon";
-import {Earth} from "../../components/earth";
 import Masalarice from "../../components/Masalarice";
 import { OrbitControls } from "@react-three/drei";
 import EarthDayMap from "../../assets/textures/soup.png";
 import { useFrame, useLoader } from "@react-three/fiber";
+import Header1 from "../layout/Header/Header1";
 import { TextureLoader } from "three";
-const ProductDetails = ({ match }) => {
-
+const ProductDetails = ({ match,history }) => {
+ 
   // code 
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -116,6 +115,7 @@ const ProductDetails = ({ match }) => {
 
   return (
     <Fragment>
+        <Header1 history={ history }/> 
       {loading ? (
         <Loader />
       ) : (
@@ -146,7 +146,7 @@ const ProductDetails = ({ match }) => {
             </div>
             <div>
               <div className="detailsBlock-1">
-                <Flip left><h2>{product.name}</h2></Flip>
+                <Flip left><h1>{product.name}</h1></Flip>
                 <p>Product # {product._id}</p>
               </div>
               <div className="detailsBlock-2">

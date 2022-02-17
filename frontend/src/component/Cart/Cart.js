@@ -6,8 +6,9 @@ import { addItemsToCart, removeItemsFromCart } from "../../actions/cartAction";
 import { Typography } from "@material-ui/core";
 import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
 import { Link } from "react-router-dom";
-
+import Header1 from "../layout/Header/Header1";
 const Cart = ({ history }) => {
+
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
 
@@ -18,7 +19,6 @@ const Cart = ({ history }) => {
     }
     dispatch(addItemsToCart(id, newQty));
   };
-
   const decreaseQuantity = (id, quantity) => {
     const newQty = quantity - 1;
     if (1 >= quantity) {
@@ -31,16 +31,18 @@ const Cart = ({ history }) => {
     dispatch(removeItemsFromCart(id));
   };
 
+
   const checkoutHandler = () => {
     history.push("/login?redirect=shipping");
   };
 
   return (
     <Fragment>
+      <Header1 history={ history }/> 
       <div className="cartBody">
       {cartItems.length === 0 ? (
         <div className="emptyCart">
-          <RemoveShoppingCartIcon />
+          <RemoveShoppingCartIcon /> 
 
           <Typography>No Product in Your Cart</Typography>
           <Link to="/products">View Products</Link>
@@ -100,7 +102,7 @@ const Cart = ({ history }) => {
             </div>
               </div>
       )}
-       </div>
+      </div>
     </Fragment>
   );
 };

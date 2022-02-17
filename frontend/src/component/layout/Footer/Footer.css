@@ -14,7 +14,7 @@ footer {
 }
 .leftFooter > h3 {
   font-family: "Roboto";
-  color: #ffad08;
+  color: var(--color-golden);
   font-size: 1.5vmax;
 }
 .leftFooter > p {
@@ -37,7 +37,7 @@ footer {
 .midFooter > h1 {
   font-size: 4vmax;
   font-family: "Roboto";
-  color: #ffad08;
+  color: var(--color-golden);
 }
 .midFooter > p {
   max-width: 60%;
@@ -55,7 +55,7 @@ footer {
 .rightFooter > h4 {
   font-family: "Roboto";
   font-size: 1.4vmax;
-  color: #ffad08;
+  color: var(--color-golden);
   text-decoration: underline;
 }
 .rightFooter > a {

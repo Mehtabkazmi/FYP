@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js",
+    "backend": "nodemon backend/server.js",
+    "dev": "concurrently \"npm run backend\" \"npm run start --prefix frontend\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "",
@@ -16,20 +17,25 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.1",
     "cloudinary": "^1.28.1",
-    "concurrently": "^7.0.0",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dialogflow": "^1.2.0",
     "dialogflow-fulfillment": "^0.6.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "express-fileupload": "^1.2.1",
+    "http": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.14",
     "nodemailer": "^6.7.2",
-    "nodemon": "^2.0.15",
     "react-reveal": "^1.2.2",
     "react-speech-recognition": "^3.9.0",
+    "socket.io": "^4.4.1",
     "stripe": "^8.197.0",
     "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.15"
   }
 }

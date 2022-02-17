@@ -26,9 +26,9 @@
   width: 20vmax;
 }
 
-.detailsBlock-1 > h2 {
-  color: #243f14;
-  font: 600 1.6vmax "Roboto";
+.detailsBlock-1 > h1 {
+  color: var(--color-golden);
+  font: 900 2.4vmax "Roboto";
 }
 
 .detailsBlock-1 > p {
@@ -56,7 +56,7 @@
 }
 
 .detailsBlock-3 > h1 {
-  color: rgba(17, 17, 17, 0.795);
+  color: var(--color-gray);
   font: 400 1.8vmax "Franklin Gothic Medium";
   margin: 1vmax 0;
 }
@@ -92,20 +92,12 @@
   cursor: pointer;
   color: white;
   transition: all 0.5s;
-  background-image: linear-gradient(to bottom right,
-    #243f14,
-    #e6e8e6);
-  font: 500 0.7vmax "Roboto";
+  background-color: var(--color-golden);
+  font: 500 1vmax "Roboto";
   border-radius: 5px;
-  padding: 1vmax 3vmax;
+  padding: 0.8vmax 2vmax;
   margin: 1vmax;
   outline: none;
-}
-
-.detailsBlock-3-1 > button:last-child:hover {
-  background-image: linear-gradient(to bottom right,
-    #e6e8e6,
-    #ffad08);
 }
 
 .detailsBlock-3 > p {
@@ -129,12 +121,10 @@
 
 .submitReview {
   border: none;
-  background-image: linear-gradient(to bottom right,
-    #243f14,
-    #e6e8e6);
-  font: 500 0.7vmax "Roboto";
+  background-color:var(--color-golden);
+  font: 500 1vmax "Roboto";
   border-radius: 20px;
-  padding: 1vmax 3vmax;
+  padding: 0.8vmax 2.5vmax;
   margin: 1vmax 0;
   color: white;
   cursor: pointer;
@@ -142,9 +132,6 @@
   outline: none;
 }
 .submitReview:hover {
-  background-image: linear-gradient(to bottom right,
-    #e6e8e6,
-    #ffad08);
   transform: scale(1.1);
 }
 

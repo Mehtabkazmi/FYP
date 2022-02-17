@@ -3,17 +3,17 @@ import { CgMouse } from "react-icons/all";
 import "./Home.css";
 import ProductCard from "./ProductCard.js";
 import MetaData from "../layout/MetaData";
+import Header1 from "../layout/Header/Header1";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
 import { BsInstagram, BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
-import SubHeading  from '../SubHeading/SubHeading';
-
-const Home = () => {
+const Home = ({history}) => {
   const alert = useAlert();
   const dispatch = useDispatch();
   const { loading, error, products } = useSelector((state) => state.products);
+  const { cartItems } = useSelector((state) => state.cart);
 
   useEffect(() => {
     if (error) {
@@ -34,8 +34,13 @@ const Home = () => {
       current.scrollLeft += 300;
     }
   };
+  // console.log(products[0]);
+   cartItems.filter((item,index,arr)=> arr[index].name==="Fish").map((item) => {
+      console.log(item.product)
+    }); 
   return (
     <Fragment>
+        <Header1 history={ history }/> 
       {loading ? (
         <Loader />
       ) : (
@@ -43,7 +48,7 @@ const Home = () => {
           <MetaData title="hotel system" />
 
           <div className="banner">
-            <p>Welcome to Hotel</p>
+            <p>Welcome to Restaurant</p>
             <h1>FIND AMAZING PRODUCTS BELOW</h1>
 
             <a href="#container">
@@ -54,10 +59,8 @@ const Home = () => {
             </div>
             <div className="gallery flex__center">
       <div className="gallery-content">
-        <SubHeading title="Hotel System " />  
         <h1 className="headtext__cormorant">Menu Gallery</h1>
-        <p className="p__opensans" style={{ color: '#AAAAAA', marginTop: '2rem' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat mattis ipsum turpis elit elit scelerisque egestas mu.</p>
-        <button type="button" className="custom__button">View More</button>
+        <p className="p__opensans" style={{ color: '#AAAAAA', marginTop: '2rem' }}>FOOD IS OUR COMMON GROUND, A UNIVERSAL EXPERIENCE.</p>
       </div>
       <div className="gallery-images">
         <div className="gallery-images_container" ref={scrollRef}>
@@ -71,7 +74,7 @@ const Home = () => {
         </div>
         <div className="gallery-images_arrows">
           <BsArrowLeftShort className="gallery__arrow-icon" onClick={() => scroll('left')} />
-          <BsArrowRightShort className="gallery__arrow-icon" onClick={() => scroll('right')} />
+          <BsArrowRightShort className="gallery__arrow-icon right" onClick={() => scroll('right')} />
         </div>
       </div>
     </div>
@@ -82,7 +85,7 @@ const Home = () => {
               products.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
-          </div>
+            </div>
         </Fragment>
       )}
     </Fragment>

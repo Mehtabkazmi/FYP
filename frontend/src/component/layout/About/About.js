@@ -3,8 +3,12 @@ import "./aboutSection.css";
 import { Button, Typography, Avatar } from "@material-ui/core";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import InstagramIcon from "@material-ui/icons/Instagram";
-const About = () => {
+import Header1 from "../Header/Header1";
+
+const About = ({history}) => {
   return (
+    <>
+        <Header1 history={ history }/> 
     <div className="aboutSection">
       <div></div>
       <div className="aboutSectionGradient"></div>
@@ -18,7 +22,7 @@ const About = () => {
               src=""
               alt="Founder"
             />
-            <Typography>Mehtab kazmi</Typography>
+            <Typography>Amina Shehzadi</Typography>
             <span>
               This is a final year project made by @us.
             </span>
@@ -38,7 +42,8 @@ const About = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+      </>
   );
 };
 

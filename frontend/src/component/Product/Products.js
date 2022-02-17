@@ -63,7 +63,7 @@ const Products = ({ match }) => {
       ) : (
         <Fragment>
           <MetaData title="PRODUCTS -- HOTEL" />
-          <h2 className="productsHeading">Products</h2>
+          <h2 className="productsHeading">Menu List</h2>
 
           <div className="products">
             {products &&
@@ -73,7 +73,7 @@ const Products = ({ match }) => {
           </div>
 
           <div className="filterBox">
-            <h4>Price</h4>
+            <h3>Price</h3>
             <Slider
               value={price}
               onChange={priceHandler} 
@@ -82,7 +82,7 @@ const Products = ({ match }) => {
               min={0}
               max={4000}
             />
-            <h4>Categories</h4>
+            <h3>Categories</h3>
             <ul className="categoryBox">
               {categories.map((category) => (
                 <li
@@ -96,7 +96,7 @@ const Products = ({ match }) => {
             </ul>
 
             <fieldset>
-              <h4 component="legend">Ratings Above</h4>
+              <h3 component="legend">Ratings Above</h3>
               <Slider
                 value={ratings}
                 onChange={(e, newRating) => {

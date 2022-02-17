@@ -3,9 +3,9 @@
   width: 15vw;
   border-bottom: 1px solid rgba(0, 0, 0, 0.171);
   padding: 2vmax;
-  color: #243f14;
+  color: var(--color-golden);
   text-shadow: 2px 2px #979797;
-  font: 500 2vmax "Roboto";
+  font: 900 3vmax "Roboto";
   text-align: center;
 }
 
@@ -70,13 +70,13 @@
 }
 
 .filterBox {
-  width: 10vmax; 
+  width: 11vmax; 
   position: absolute;
   top: 10vmax;
   left: 4vmax;
-  color: #243f14;
+  font-weight: bold;
+  color: var(--color-golden);
 }
-
 .categoryBox {
   padding: 0%;
 }

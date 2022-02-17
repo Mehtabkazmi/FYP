@@ -1,0 +1,3 @@
+https://console.developers.google.com/cloud-resource-manager
+https://dialogflow.cloud.google.com/#/agent/chat-bot-340406/editIntent/c96a3010-a415-4be4-8eff-99959d27844b/
+https://console.cloud.google.com/iam-admin/serviceaccounts/details/101932027162320181424/keys?project=chat-bot-340406&supportedpurview=project

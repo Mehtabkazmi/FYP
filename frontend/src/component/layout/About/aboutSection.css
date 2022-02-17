@@ -7,7 +7,7 @@
   grid-template-columns: 4fr 4fr;
   position: fixed;
   background-image: linear-gradient(to bottom right,
-    #243f14,
+    var(--color-golden),
     #e6e8e6);
 }
 .aboutSectionContainer {
@@ -26,8 +26,8 @@
 }
 
 .aboutSectionContainer > h1 {
-  font: 400 3vmax "Roboto";
-  color: #243f14;
+  font: 900 3vmax "Roboto";
+  color: var(--color-golden);
   margin: 2vmax;
 }
 
