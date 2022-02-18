@@ -38,6 +38,7 @@ import ProductList from "./component/Admin/ProductList.js";
 import managerProductList from "./component/Manager/ProductList.js";
 import NewProduct from "./component/Admin/NewProduct";
 import UpdateProduct from "./component/Admin/UpdateProduct";
+import Messenger from "./component/messenger/Messenger";
 import OrderList from "./component/Admin/OrderList";
 import managerOrderList from "./component/Manager/OrderList";
 import chefOrderList from "./component/Chef/OrderList";
@@ -185,6 +186,12 @@ const App = ({history}) => {
             path="/admin/reviews"
             isAdmin={true}
             component={ProductReviews}
+          />
+          <ProtectedRoute
+            exact
+            path="/admin/messenger"
+            isAdmin={true}
+            component={Messenger}
           />
           <ProtectedRoute
             isManager={true}

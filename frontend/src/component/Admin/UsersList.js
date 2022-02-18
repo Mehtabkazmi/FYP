@@ -45,7 +45,7 @@ const UsersList = ({ history }) => {
       history.push("/admin/users");
       dispatch({ type: DELETE_USER_RESET });
     }
-
+ 
     dispatch(getAllUsers());
   }, [dispatch, alert, error, deleteError, history, isDeleted, message]);
 

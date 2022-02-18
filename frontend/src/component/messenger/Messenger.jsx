@@ -1,12 +1,15 @@
 import "./messenger.css";
-import Conversation from "../../components/conversations/Conversation";
-import Message from "../../components/message/Message";
+import Conversation from "../layout/conversations/Conversation";
+import Message from "../layout/message/Message";
 import { useEffect, useRef, useState } from "react";
-import { userRequest } from "../../requestMethods";
-import { useSelector } from "react-redux";
+import { getConversations } from "../../actions/convAction";
+import { useSelector,useDispatch } from "react-redux";
 import { io } from "socket.io-client";
+import axios from "axios";  
 
 export default function Messenger() {
+  const dispatch = useDispatch();
+
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -14,7 +17,9 @@ export default function Messenger() {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const socket = useRef();
 
-  const { loading, error, user } = useSelector((state) => state.userDetails);        
+  const { loading, error, user } = useSelector((state) => state.userDetails); 
+    console.log(user._id);
+  
   const scrollRef = useRef();
   useEffect(() => {
     socket.current = io("ws://localhost:8900"); 
@@ -41,19 +46,18 @@ export default function Messenger() {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await userRequest.get("/conversations/" + user._id);
+        const res = await axios.get("/api/v1/admin/messenger/" + user._id);
         setConversations(res.data);
-      } catch (err) {
+      } catch (err) { 
         console.log(err);
       }
     };
     getConversations();
   }, [user._id]);
-
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await userRequest.get("/messages/" + currentChat?._id);
+        const res = await axios.get("/api/v1/admin/message/" + currentChat?._id);
         setMessages(res.data);
       } catch (err) {
         console.log(err);
@@ -81,7 +85,7 @@ export default function Messenger() {
     });
 
     try {
-      const res = await userRequest.post("/messages", message);
+      const res = await axios.post("/api/v1/admin/message", message);
       setMessages([...messages, res.data]);
       setNewMessage("");
     } catch (err) {
