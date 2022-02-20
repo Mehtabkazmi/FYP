@@ -4,6 +4,7 @@
   padding: 10px;
   cursor: pointer;
   margin-top: 20px;
+  border-bottom: 1px solid var(--color-gray);
 }
 
 .conversation:hover {
@@ -20,6 +21,7 @@
 
 .conversationName {
   font-weight: 500;
+  color: var(--color-gray);
 }
 
 @media screen and (max-width: 768px) {

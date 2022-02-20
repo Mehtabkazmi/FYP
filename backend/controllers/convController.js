@@ -3,30 +3,22 @@ const Conversation = require("../models/convModel");
 
 //new conv
 exports.newConv = catchAsyncErrors(async (req, res) => {
-  const { senderId, receiverId } = req.body;
   const conv = await Conversation.create({
     members: [
-      senderId,
-      receiverId,
+      req.body.senderId,
+      req.body.receiverId,
     ],
   });
-  res.status(201).json({
-    success: true,
-    conv,
-  });
+  res.status(201).json(conv);
 });
 
 // get conversation of user
 
 exports.getConv = catchAsyncErrors(async (req, res) => {
   const conv = await Conversation.find({
-      members: { $in: [req.params.userId] },
+    members: { $in: [req.params.userId] },
   });
-  
-  res.status(200).json({
-    success: true,
-    conv,
-  });
+  res.status(200).json(conv);
 });
 
 // get conv includes two userId

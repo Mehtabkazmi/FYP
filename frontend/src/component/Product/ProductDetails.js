@@ -29,9 +29,8 @@ import Masalarice from "../../components/Masalarice";
 import { OrbitControls } from "@react-three/drei";
 import EarthDayMap from "../../assets/textures/soup.png";
 import { useFrame, useLoader } from "@react-three/fiber";
-import Header1 from "../layout/Header/Header1";
 import { TextureLoader } from "three";
-const ProductDetails = ({ match,history }) => {
+const ProductDetails = ({ match }) => {
  
   // text to voice initial
   VoicesTTS.init({
@@ -123,7 +122,6 @@ const ProductDetails = ({ match,history }) => {
 
   return (
     <Fragment>
-        <Header1 history={ history }/> 
       {loading ? (
         <Loader />
       ) : (

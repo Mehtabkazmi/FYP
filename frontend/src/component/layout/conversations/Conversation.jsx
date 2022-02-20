@@ -5,27 +5,33 @@ import "./conversation.css";
 export default function Conversation({ conversation, currentUser }) {
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const friendId = conversation.members.find((m) => m !== currentUser._id);
+  const friendId = conversation.members.find((m) => m !== currentUser._id);
+  useEffect(() => { 
     const getUser = async () => {
       try {
-        const res = await axios.get("../users?userId=" + friendId);
+        const res = await axios.get("/api/v1/admin/users");
         setUser(res.data);
+        
       } catch (err) {
         console.log(err);
       }
     };
     getUser();
-  }, [currentUser, conversation]);
-
+  }, [conversation, currentUser]);
   return (
-    <div className="conversation">
+  <>
+      {user && user.users.filter((item, i, arr) => arr[i]._id === friendId)
+        .map((item,i) => (
+    <div key={i} className="conversation">
+          
       <img
         className="conversationImg"
-        src="https://media.gettyimages.com/photos/wazir-khan-mosque-lahore-punjab-pakistan-picture-id637623678?s=612x612"
+        src={item.avatar.url}
         alt=""
       />
-      <span className="conversationName">{user?.username}</span>
+      <span className="conversationName">{item.name}</span>
     </div>
+        ))}
+      </>
   );
 }

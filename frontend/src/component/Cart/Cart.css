@@ -33,11 +33,12 @@
 }
 
 .cartHeader {
-  background-color: #243f14;
-  width: 90%;
-  box-sizing: border-box;
+  background-color: var(--color-golden);
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 3px 2px;
+  border-radius: 10px;
   margin: auto;
-  color: white;
+  color: var(--color-white);
   display: grid;
   padding: 8px;
   grid-template-columns: 4fr 1fr 1fr;
@@ -103,7 +104,7 @@
 }
 
 .cartGrossProfitBox {
-  border-top: 3px solid #c72022;
+  border-top: 3px solid var(--color-grey);
   margin: 1vmax 4vmax;
   box-sizing: border-box;
   padding: 2vmax 0;
@@ -117,22 +118,21 @@
   justify-content: flex-end;
 }
 .checkOutBtn > button {
-  background-image: linear-gradient(to bottom right,
-    #243f14,
-    #e6e8e6);
-  color: white;
+  background-color:var(--color-golden);
+  color: var(--color-white);
   border: none;
   padding: 0.8vmax 4vmax;
   width: 50%;
   font: 300 0.8vmax "Roboto";
+  font-size: 18px;
   margin: 1vmax 4vmax;
   cursor: pointer;
   border-radius: 30px;
 }
 .checkOutBtn>button:hover{
-  background-image: linear-gradient(to bottom right,
-    #e6e8e6,
-    #ffad08);
+  background-color:var(--color-white);
+  color: var(--color-golden);
+  border:1px solid var(--color-golden);
 }
 @media screen and (max-width: 600px) {
   .cartPage {
@@ -144,6 +144,7 @@
     width: 100%;
     font: 300 1.7vmax "Roboto";
     grid-template-columns: 3fr 1fr 1fr;
+    
   }
 
   .cartContainer {

@@ -3,12 +3,10 @@ import "./aboutSection.css";
 import { Button, Typography, Avatar } from "@material-ui/core";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import InstagramIcon from "@material-ui/icons/Instagram";
-import Header1 from "../Header/Header1";
 
-const About = ({history}) => {
+const About = () => {
   return (
     <>
-        <Header1 history={ history }/> 
     <div className="aboutSection">
       <div></div>
       <div className="aboutSectionGradient"></div>

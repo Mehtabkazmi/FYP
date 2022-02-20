@@ -3,13 +3,12 @@ import { CgMouse } from "react-icons/all";
 import "./Home.css";
 import ProductCard from "./ProductCard.js";
 import MetaData from "../layout/MetaData";
-import Header1 from "../layout/Header/Header1";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
 import { BsInstagram, BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
-const Home = ({history}) => {
+const Home = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
   const { loading, error, products } = useSelector((state) => state.products);
@@ -39,8 +38,7 @@ const Home = ({history}) => {
       console.log(item.product)
     }); 
   return (
-    <Fragment>
-        <Header1 history={ history }/> 
+    <Fragment> 
       {loading ? (
         <Loader />
       ) : (

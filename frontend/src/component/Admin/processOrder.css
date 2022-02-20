@@ -14,7 +14,7 @@
   margin: 2rem 0;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.267);
+  border: 1px solid var(--color-gray);
   border-radius: 4px;
   font: 300 0.9vmax cursive;
   outline: none;
@@ -24,7 +24,7 @@
   position: absolute;
   transform: translateX(1vmax);
   font-size: 1.6vmax;
-  color: rgba(0, 0, 0, 0.623);
+  color: var(--color-gray);
 }
 
 @media screen and (max-width: 600px) {

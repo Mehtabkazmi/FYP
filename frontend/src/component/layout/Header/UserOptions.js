@@ -7,14 +7,24 @@ import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import ChatIcon from '@material-ui/icons/Chat';
 import { useHistory } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { logout } from "../../../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
+import { Button, Modal } from 'react-bootstrap';
+import Messenger from '../../messenger/Messenger';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './Header.css'
 
 const UserOptions = ({ user }) => {
   const { cartItems } = useSelector((state) => state.cart);
+// chat modal
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+// 
   const [open, setOpen] = useState(false);
   const history = useHistory();
   const alert = useAlert();
@@ -32,6 +42,7 @@ const UserOptions = ({ user }) => {
       name: `Cart(${cartItems.length})`,
       func: cart,
     },
+    { icon: <ChatIcon />, name: "Chat", func: chat },
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
 
@@ -41,10 +52,27 @@ const UserOptions = ({ user }) => {
       name: "Dashboard",
       func: dashboard,
     });
+  } else if (user.role === "manager") {
+    options.unshift({
+      icon: <DashboardIcon />,
+      name: "Dashboard",
+      func: managerDashboard,
+    });
+  } else if (user.role === "chef") {
+    options.unshift({
+      icon: <DashboardIcon />,
+      name: "Dashboard",
+      func: chefDashboard,
+    });
   }
-
   function dashboard() {
     history.push("/admin/dashboard");
+  }
+  function managerDashboard() {
+    history.push("/manager/dashboard");
+  }
+  function chefDashboard() {
+    history.push("/chef/dashboard");
   }
 
   function orders() {
@@ -52,6 +80,9 @@ const UserOptions = ({ user }) => {
   }
   function account() {
     history.push("/account");
+  }
+  function chat() {
+    handleShow()
   }
   function cart() {
     history.push("/cart");
@@ -90,6 +121,24 @@ const UserOptions = ({ user }) => {
           />
         ))}
       </SpeedDial>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title className="title">Messenger</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Messenger/>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Fragment>
   );
 };

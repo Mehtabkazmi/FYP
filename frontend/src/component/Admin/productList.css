@@ -12,7 +12,7 @@
   font: 400 2rem "Roboto";
   padding: 0.5vmax;
   box-sizing: border-box;
-  color: #7BC705;
+  color: var(--color-golden);
   transition: all 0.5s;
   margin: 2rem;
   text-align: center;

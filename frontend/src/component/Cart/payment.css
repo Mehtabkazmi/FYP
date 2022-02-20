@@ -16,7 +16,7 @@
   color: rgba(0, 0, 0, 0.753);
   border-bottom: 1px solid rgba(0, 0, 0, 0.13);
   padding: 1vmax 0;
-  color: #243f14;
+  color: var(--color-golden);
   text-align: center;
   width: 50%;
   margin: auto;
@@ -33,7 +33,7 @@
   padding-right: 1vmax;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.267);
+  border: 1px solid var(--color-grey);
   border-radius: 4px;
   outline: none;
 }
@@ -47,10 +47,8 @@
 
 .paymentFormBtn {
   border: none;
-  background-image: linear-gradient(to bottom right,
-    #243f14,
-    #e6e8e6);
-  color: white;
+  background-color: var(--color-golden);
+  color: var(--color-white);
   font: 300 0.9vmax "Roboto";
   width: 100%;
   padding: 0.8vmax;
@@ -60,9 +58,9 @@
 }
 
 .paymentFormBtn:hover {
-  background-image: linear-gradient(to bottom right,
-      #e6e8e6,
-      #ffad08);
+  background-color:var(--color-white);
+  color: var(--color-golden);
+  border: 1px solid var(--color-golden);
 }
 
 @media screen and (max-width: 600px) {

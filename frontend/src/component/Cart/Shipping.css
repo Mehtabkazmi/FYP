@@ -17,11 +17,11 @@
 
 .shippingHeading {
   text-align: center;
-  color: rgba(0, 0, 0, 0.664);
-  font: 400 1.3vmax "Roboto";
+  color: var(--color-golden);
+  font: 400 2vmax "Roboto";
   padding: 1.3vmax;
   border-bottom: 1px solid rgba(0, 0, 0, 0.205);
-  width: 50%;
+  width: 70%;
   margin: auto;
 }
 
@@ -63,13 +63,12 @@
 
 .shippingBtn {
   border: none;
-  background-image: linear-gradient(to bottom right,
-    #243f14,
-    #e6e8e6);
+  background-color: var(--color-golden);
   color: white;
   font: 300 1vmax "Roboto";
   width: 100%;
   padding: 1vmax;
+  font-size: 18px;
   cursor: pointer;
   transition: all 0.5s;
   outline: none;
@@ -77,9 +76,9 @@
 }
 
 .shippingBtn:hover {
-  background-image: linear-gradient(to bottom right,
-      #e6e8e6,
-      #ffad08);
+  background-color: var(--color-white);
+  color: var(--color-golden);
+  border:1px solid var(--color-golden);
 }
 
 @media screen and (max-width: 600px) {

@@ -16,7 +16,7 @@
 
 .confirmshippingArea > p {
   font: 400 1.8vmax "Roboto";
-  color: #243f14;
+  color: var(--color-golden);
   font-weight: bold;
 }
 
@@ -42,7 +42,7 @@
 
 .confirmCartItems > p {
   font: 400 1.8vmax "Roboto";
-  color: #243f14;
+  color: var(--color-golden);
   font-weight: bold;
 }
 
@@ -91,7 +91,7 @@
   padding: 1vmax;
   width: 100%;
   margin: auto;
-  color: #243f14;
+  color: var(--color-golden);
   font-weight: bold;
   box-sizing: border-box;
 }
@@ -115,9 +115,7 @@
 }
 
 .orderSummary>button {
-  background-image: linear-gradient(to bottom right,
-      #243f14,
-      #e6e8e6);
+  background-color:var(--color-golden);
   color: white;
   width: 100%;
   padding: 1vmax;
@@ -129,9 +127,9 @@
 }
 
 .orderSummary>button:hover {
-  background-image: linear-gradient(to bottom right,
-      #e6e8e6,
-      #ffad08);
+  background-color:var(--color-white);
+  color: var(--color-golden);
+  border: 1px solid var(--color-golden);
 }
 
 @media screen and (max-width: 600px) {

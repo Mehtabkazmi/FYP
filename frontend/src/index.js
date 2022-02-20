@@ -6,6 +6,7 @@ import store from "./store";
 import { Suspense } from "react";
 import { positions, transitions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const options = {
   timeout: 5000,
@@ -16,10 +17,11 @@ const options = {
 ReactDOM.render(
   <Provider store={store}>
     <AlertProvider template={AlertTemplate} {...options}>
-      
+      <Router>
         <Suspense fallback={null}>
         <App />
         </Suspense>
+        </Router>
     </AlertProvider>
   </Provider>,
   document.getElementById("root")

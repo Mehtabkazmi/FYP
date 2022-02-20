@@ -7,13 +7,13 @@
 }
 
 .dashboardContainer {
-  border-left: 1px solid rgba(0, 0, 0, 0.13);
+  border-left: 1px solid var(--color-gray);
   background-color: rgb(255, 255, 255);
   padding: 3rem 0;
 }
 
 .dashboardContainer > h1 {
-  color: #7BC705;
+  color: var(--color-gray);
   font: 300 2rem "Roboto";
   text-align: center;
   width: 50%;
@@ -27,12 +27,12 @@
 
 .dashboardSummary > div {
   display: flex;
-  background-color: white;
+  background-color: var(--color-white);
   justify-content: center;
 }
 .dashboardSummary > div > p {
-  background-color: #910073;
-  color: white;
+  background-color: var(--color-golden);
+  color: var(--color-white);
   font: 300 1.3rem "Roboto";
   text-align: center;
   padding: 1.5rem;
@@ -40,14 +40,14 @@
   margin: 0 2rem;
 }
 .dashboardSummaryBox2 > a {
-  color: rgb(255, 255, 255);
+  color: var(--color-white);
   font: 300 2rem "Roboto";
   text-align: center;
   background-color: #FABB51;
   text-decoration: none;
   padding: 1.5rem;
-  width: 10vmax;
-  height: 10vmax;
+  width: 12vmax;
+  height: 12vmax;
   margin: 2rem;
   border-radius: 100%;
   display: flex;
@@ -58,12 +58,12 @@
 
 .dashboardSummaryBox2 > a:first-child {
   background-color: #92A9BD;
-  color: rgb(255, 255, 255);
+  color: var(--color-white);
 }
 
 .dashboardSummaryBox2 > a:last-child {
   background-color: #C7B198;
-  color: rgb(255, 255, 255);
+  color: var(--color-white);
 }
 
 .lineChart {

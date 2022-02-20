@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addItemsToCart,removeItemsFromCart } from "../actions/cartAction";
 
 const COMMANDS = {
+  OPEN_OUR_MENU: "open-our-menu",
   OPEN_MENU: "open-menu",
   CLOSE_MENU: "close-menu",
   ADD_ITEM: "add-item",
@@ -11,7 +12,8 @@ const COMMANDS = {
   PURCHASE_ITEMS: "purchase-items",
   OPEN_DISH: "view-dish",
   OPEN_CONTACT: "view-contact",
-  OPEN_ABOUT: "view-about"
+  OPEN_ABOUT: "view-about",
+  OPEN_LOGIN:"open-login"
 }
 
 const UseAlan = ({history}) => {
@@ -22,22 +24,33 @@ const UseAlan = ({history}) => {
   const [alanInstance, setAlanInstance] = useState()
 
   const isCartEmpty = cartItems.length === 0
-
+  
   // open menu 
   const openCart = useCallback(() => {
-    if (isCartEmpty) {
-      alanInstance.playText("You have no items in your menu")
-    } else {
+    
       alanInstance.playText("Opening menu")
       history.push("/cart");
       alanInstance.remove();
-    }
   }, [alanInstance, isCartEmpty, history])
+
+  // open menu 
+  const openMenu = useCallback(() => {
+      alanInstance.playText("Opening menu page")
+      history.push("/products");
+      alanInstance.remove();
+  }, [alanInstance, history])
 
   // open contact 
   const openContact = useCallback(() => {
       alanInstance.playText("Opening contact page")
       history.push("/contact");
+      alanInstance.remove();
+  }, [alanInstance, history])
+  
+  // open contact 
+  const openlogin = useCallback(() => {
+      alanInstance.playText("Opening login page")
+      history.push("/login");
       alanInstance.remove();
   }, [alanInstance, history])
   
@@ -97,7 +110,8 @@ const UseAlan = ({history}) => {
         },[alanInstance,history])
 
   useEffect(() => {
-    window.addEventListener(COMMANDS.OPEN_MENU, openCart)
+    window.addEventListener(COMMANDS.OPEN_MENU, openMenu)
+    window.addEventListener(COMMANDS.OPEN_OUR_MENU, openCart)
     window.addEventListener(COMMANDS.CLOSE_MENU, closeCart)
     window.addEventListener(COMMANDS.ADD_ITEM, addItem)
     window.addEventListener(COMMANDS.REMOVE_ITEM, removeItem)
@@ -105,9 +119,11 @@ const UseAlan = ({history}) => {
     window.addEventListener(COMMANDS.OPEN_DISH, openDish)
     window.addEventListener(COMMANDS.OPEN_CONTACT, openContact)
     window.addEventListener(COMMANDS.OPEN_ABOUT, openAbout)
+    window.addEventListener(COMMANDS.OPEN_LOGIN, openlogin)
 
     return () => {
-      window.removeEventListener(COMMANDS.OPEN_MENU, openCart)
+      window.removeEventListener(COMMANDS.OPEN_MENU, openMenu)
+      window.removeEventListener(COMMANDS.OPEN_OUR_MENU, openCart)
       window.removeEventListener(COMMANDS.CLOSE_MENU, closeCart)
       window.removeEventListener(COMMANDS.ADD_ITEM, addItem)
       window.removeEventListener(COMMANDS.REMOVE_ITEM, removeItem)
@@ -115,8 +131,9 @@ const UseAlan = ({history}) => {
       window.removeEventListener(COMMANDS.OPEN_DISH, openDish)
       window.removeEventListener(COMMANDS.OPEN_CONTACT, openContact)
       window.removeEventListener(COMMANDS.OPEN_ABOUT, openAbout)
+      window.removeEventListener(COMMANDS.OPEN_LOGIN, openlogin)
     }
-  }, [openCart, closeCart, addItem,removeItem,purchaseItems,openDish,openAbout])
+  }, [openCart, closeCart, addItem,removeItem,purchaseItems,openDish,openAbout,openlogin])
 
   useEffect(() => {
     if (alanInstance != null) return

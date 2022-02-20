@@ -2,13 +2,13 @@
   width: 100%;
   box-sizing: border-box;
   background-color: rgb(240, 240, 240);
-  border-left: 1px solid rgba(0, 0, 0, 0.158);
+  border-left: 1px solid var(--color-gray);
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 .newProductContainer h1 {
-  color: #7CC907;
+  color: var(--color-golden);
   font: 300 2rem "Roboto";
   text-align: center;
 }
@@ -21,9 +21,9 @@
   padding: 3vmax;
   justify-content: space-evenly;
   height: 70%;
-  width: 40vh;
+  width: 50vh;
   background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.267);
+  box-shadow: 0 0 10px var(--color-gray);
 }
 
 .createProductForm > div {
@@ -38,19 +38,20 @@
   padding-right: 1vmax;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #910073;
+  border: 1px solid var(--color-grey);
   border-radius: 4px;
   font: 300 0.9vmax cursive;
   outline: none;
+  margin-top: 2px;
 }
 .createProductForm > div > select , option{
-  color: rgba(112, 112, 112, 0.733);
+  color: var(--color-gray);
 }
 .createProductForm > div > svg {
   position: absolute;
   transform: translateX(1vmax);
   font-size: 1.6vmax;
-  color: rgba(0, 0, 0, 0.623);
+  color: var(--color-gray);
 }
 
 #createProductFormFile > input {
@@ -86,8 +87,9 @@
   margin: 0 0.5vmax;
 }
 #createProductBtn {
+  margin-top: 10px;
   border: none;
-  background-color: #910073;
+  background-color: var(--color-golden);
   color: white;
   font: 300 0.9vmax "Roboto";
   width: 100%;
@@ -97,6 +99,11 @@
   border-radius: 4px;
   outline: none;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.219);
+}
+#createProductBtn:hover {
+  background-color:var(--color-white);
+  color: var(--color-golden);
+  border: 1px solid var(--color-golden);
 }
 @media screen and (max-width: 600px) {
   .newProductContainer {
