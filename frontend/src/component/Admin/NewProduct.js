@@ -86,7 +86,7 @@ const NewProduct = ({ history }) => {
 
   return (
     <Fragment>
-      <MetaData title="Create Product" />
+      <MetaData title="Create Dish" />
       <div className="dashboard">
         <SideBar />
         <div className="newProductContainer">
@@ -95,7 +95,7 @@ const NewProduct = ({ history }) => {
             encType="multipart/form-data"
             onSubmit={createProductSubmitHandler}
           >
-            <h1>Create Product</h1>
+            <h1>Create Dish</h1>
 
             <div>
               <SpellcheckIcon />

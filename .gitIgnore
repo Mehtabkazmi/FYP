@@ -9,7 +9,7 @@
 # testing
 /frontend/coverage
 
-# production
+# productionx
 /frontend/build
 
 # misc

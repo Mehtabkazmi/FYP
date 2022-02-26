@@ -52,7 +52,7 @@ const ProductList = ({ history }) => {
   }, [dispatch, alert, error, deleteError, history, isDeleted]);
 
   const columns = [
-    { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
+    { field: "id", headerName: "Dish ID", minWidth: 200, flex: 0.5 },
 
     {
       field: "name",
@@ -117,12 +117,12 @@ const ProductList = ({ history }) => {
 
   return (
     <Fragment>
-      <MetaData title={`ALL PRODUCTS - Admin`} />
+      <MetaData title={`ALL Dishes - Admin`} />
 
       <div className="dashboard">
         <SideBar />
         <div className="productListContainer">
-          <h1 id="productListHeading">ALL PRODUCTS</h1> 
+          <h1 id="productListHeading">ALL DISHES</h1> 
 
           <DataGrid
             rows={rows}

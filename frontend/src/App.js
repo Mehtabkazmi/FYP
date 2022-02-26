@@ -229,7 +229,7 @@ const App = () => {
   // window.addEventListener("contextmenu", (e) => e.preventDefault());
   return (
     <>
-        <Header /> 
+        <Header />  
         {isAuthenticated && <UserOptions user={user} />}
 
         {stripeApiKey && (
