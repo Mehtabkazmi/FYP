@@ -189,6 +189,16 @@ export const getAllUsers = () => async (dispatch) => {
     dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.message });
   }
 };
+// get All manager Users
+export const getAllManagerUsers = () => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_USERS_REQUEST });
+    const { data } = await axios.get(`/api/v1/manager/users`);
+    dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
+  } catch (error) {
+    dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.message });
+  }
+};
 
 // get  User Details
 export const getUserDetails = (id) => async (dispatch) => {

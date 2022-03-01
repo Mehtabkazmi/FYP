@@ -9,12 +9,6 @@ import Loader from "../layout/Loader/Loader";
 
 export default function Messenger({history}) {
 
-  // for modal
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   // conversation 
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
@@ -57,8 +51,18 @@ export default function Messenger({history}) {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await axios.get("/api/v1/admin/messenger/" + user._id);
-        setConversations(res.data);
+        if (user.role === "manager") {
+          const res = await axios.get("/api/v1/manager/messenger/" + user._id);
+          setConversations(res.data);
+        }
+        else if (user.role === "chef") {
+          const res = await axios.get("/api/v1/chef/messenger/" + user._id);
+          setConversations(res.data);
+        }
+        else if (user.role === "user") {
+          const res = await axios.get("/api/v1/user/messenger/" + user._id);
+          setConversations(res.data);
+        }
       } catch (err) { 
         console.log(err);
       }
@@ -68,8 +72,18 @@ export default function Messenger({history}) {
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await axios.get("/api/v1/admin/message/" + currentChat?._id);
-        setMessages(res.data);
+        if (user.role === "manager") {
+          const res = await axios.get("/api/v1/manager/message/" + currentChat?._id);
+          setMessages(res.data);
+        }
+        else if (user.role === "chef") {
+          const res = await axios.get("/api/v1/chef/message/" + currentChat?._id);
+          setMessages(res.data);
+        }
+        else if (user.role === "user") {
+          const res = await axios.get("/api/v1/user/message/" + currentChat?._id);
+          setMessages(res.data);
+        }
       } catch (err) {
         console.log(err);
       }
@@ -96,9 +110,21 @@ export default function Messenger({history}) {
     });
 
     try {
-      const res = await axios.post("/api/v1/admin/message", message);
-      setMessages([...messages, res.data]);
-      setNewMessage("");
+      if (user.role === "manager") {
+        const res = await axios.post("/api/v1/manager/message", message);
+        setMessages([...messages, res.data]);
+        setNewMessage("");
+      }
+      else if (user.role === "chef") {
+        const res = await axios.post("/api/v1/chef/message", message);
+        setMessages([...messages, res.data]);
+        setNewMessage("");
+      }
+      else if (user.role === "user") {
+        const res = await axios.post("/api/v1/user/message", message);
+        setMessages([...messages, res.data]);
+        setNewMessage("");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -118,9 +144,9 @@ export default function Messenger({history}) {
             <div className="chatMenuWrapper">
               <input placeholder="Search for friends" className="chatMenuInput" />
             
-              {conversations.map((c,i) => (
+              {conversations.map((c,index) => (
             
-              <div key={i} onClick={() => setCurrentChat(c)}>
+              <div key={index} onClick={() => setCurrentChat(c)}>
               <Conversation conversation={c} currentUser={user} />
               </div>
             ))} 
@@ -135,8 +161,8 @@ export default function Messenger({history}) {
                       <div ref={scrollRef}>
                         <Message message={m} own={m.sender === user._id} />
                       </div>
-                    ))}
-                  </div>
+                    ))} 
+                  </div> 
                   <div className="chatBoxBottom">
                     <textarea
                       className="chatMessageInput"

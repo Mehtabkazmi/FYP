@@ -6,6 +6,7 @@ import { addItemsToCart, removeItemsFromCart } from "../../actions/cartAction";
 import { Typography } from "@material-ui/core";
 import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
 import { Link } from "react-router-dom";
+import Header1 from '../layout/Header/Header1';
 const Cart = ({ history }) => {
 
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const Cart = ({ history }) => {
 
   return (
     <Fragment>
+      <Header1 history={history}/>
       <div className="cartBody">
       {cartItems.length === 0 ? (
         <div className="emptyCart">

@@ -36,6 +36,12 @@ router.route("/me/update").put(isAuthenticatedUser, updateProfile);
 router
   .route("/admin/users")
   .get(isAuthenticatedUser, authorizeRoles("admin"), getAllUser);
+router
+  .route("/manager/users")
+  .get(isAuthenticatedUser, authorizeRoles("manager"), getAllUser);
+router
+  .route("/user/users")
+  .get(isAuthenticatedUser, getAllUser);
 
 router
   .route("/admin/user/:id")

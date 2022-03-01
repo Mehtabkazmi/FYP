@@ -8,12 +8,13 @@ export default function Conversation({ conversation, currentUser }) {
   const friendId = conversation.members.find((m) => m !== currentUser._id);
   useEffect(() => { 
     const getUser = async () => {
-      try {
-        const res = await axios.get("/api/v1/admin/users");
+      try { 
+        const res = await axios.get("/api/v1/manager/users");
         setUser(res.data);
         
       } catch (err) {
-        console.log(err);
+        const res = await axios.get("/api/v1/user/users");
+        setUser(res.data);
       }
     };
     getUser();
@@ -27,7 +28,7 @@ export default function Conversation({ conversation, currentUser }) {
       <img
         className="conversationImg"
         src={item.avatar.url}
-        alt=""
+        alt="" 
       />
       <span className="conversationName">{item.name}</span>
     </div>

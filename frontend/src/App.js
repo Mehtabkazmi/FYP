@@ -53,7 +53,7 @@ import NotFound from "./component/layout/Not Found/NotFound";
 import alanBtn from "@alan-ai/alan-sdk-web"
 import { useSelector, useDispatch } from "react-redux";
 import { addItemsToCart, removeItemsFromCart } from "./actions/cartAction";
-
+import { logout } from "./actions/userAction";
 const COMMANDS = {
   OPEN_OUR_MENU: "open-our-menu",
   OPEN_MENU: "open-menu",
@@ -64,7 +64,7 @@ const COMMANDS = {
   OPEN_DISH: "view-dish",
   OPEN_CONTACT: "view-contact",
   OPEN_ABOUT: "view-about",
-  OPEN_LOGIN:"open-login"
+  OPEN_LOGIN: "open-login"
 }
 
 const App = () => {
@@ -72,7 +72,7 @@ const App = () => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
   const { products } = useSelector((state) => state.products);
-
+  
   const [alanInstance, setAlanInstance] = useState()
 
   const isCartEmpty = cartItems.length === 0
@@ -81,7 +81,8 @@ const App = () => {
   const openCart = useCallback(() => {
     
       alanInstance.playText("Opening menu")
-      history.push("/cart");
+    history.push("/cart");
+    alanInstance.remove();
       
   }, [alanInstance, history])
 
@@ -119,12 +120,12 @@ const App = () => {
       history.push("/");
       
   }, [alanInstance,history])
-
   // add item in menu list
   const addItem = useCallback(
     ({ detail: { product, quantity } }) => {
-      products.filter((x, index, arr) => arr[index].name.toLowerCase() === product.toLowerCase()).map(({ _id, name }) => {
-            dispatch(addItemsToCart(_id, quantity));
+      console.log(products);
+      products.filter((x, index, arr) => arr[index].name.toLowerCase() === product.toLowerCase()).map((item) => {
+            dispatch(addItemsToCart(item._id, quantity));
           alanInstance.playText(
             `Add ${quantity} of the ${product} item to your cart`
           );
@@ -160,6 +161,7 @@ const App = () => {
               }); 
               
         },[alanInstance])
+      // logout ...
 
   useEffect(() => {
     window.addEventListener(COMMANDS.OPEN_MENU, openMenu)
